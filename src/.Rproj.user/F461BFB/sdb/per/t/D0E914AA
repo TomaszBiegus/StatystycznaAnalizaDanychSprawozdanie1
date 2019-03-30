@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1553974080453.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D0E914AA",
+    "lastKnownWriteTime" : 5,
+    "last_content_update" : 1553974080453,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "F4F05715",
+        "caption" : "HOMA_DT",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=HOMA_DT&cache_key=F4F05715",
+        "displayedObservations" : "278",
+        "environment" : "",
+        "object" : "HOMA_DT",
+        "preview" : "0",
+        "totalObservations" : "278",
+        "variables" : "10"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

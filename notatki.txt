@@ -1,0 +1,64 @@
+Metody krokowe:
+metoda forward i backward
+
+Metoda backward usuwamy poczynajac od najgorszej bety
+y~b1 x1 + b2 x2 + b3 x3
+          p.value
+b1 =/= 0  0.001
+b2 =/= 0.93
+b3 =/= 0.56
+(odrzucamy najgorsza bete, tu beta2)
+1. y~ b1 x1 + b3 x3
+          p.value
+b1 =/= 0  0.03
+b3 =/= 0  0.02
+
+Forward dodajemy
+
+
+Jest do tego funkcja step w r-rze
+ale nie jest oparta o test istotnosci tylko o inna metode
+
+ta powyzsza mamy sobie sami napisac i w sprawozdaniu maja sie znalezc obie metody
+
+
+===================
+na poczatku wprowadzenie do problemu co bedziemy robic, jakie dane analizujemy,
+cala analiza i na koncu krotkie wnioski/podsumowanie calej analizy
+
+==================
+17 kwietnia o polnocy jest deadline
+
+wysylamy pdf z raportem i kody
+
+.rnw albo .r
+
+sprawko max 20 punktow
+
+max 20 stron
+
+
+zad 5 i 6 komentarze pojawia sie za tydzien
+
+
+Komentarz do operatora pipe'owego:
+
+mean(x)
+library(magrittr)
+
+x %>% mean
+
+
+x %>% as.numeric %>% mean()
+
+
+
+y %>% {plot(x,.)}
+kropka oznacza miejsce do ktorego zostanie podstawiony argument
+
+x <- as.numeric(x)
+x %<>% as.numeric()
+
+
+sprawdzic funkcje complete.cases()
+

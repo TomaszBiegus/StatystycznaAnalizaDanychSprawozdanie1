@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(magrittr)\nlibrary(data.table)\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nHOMA_DF <- read.csv('../HOMA.csv', sep = ';', dec = ',')\nHOMA_DT <- data.table(HOMA_DF)\n\n\n\n# 1. Przegląd danych - \"sanity checks\":\nHOMA_DT[WIEK < 20 | WIEK > 40]\n# Ujemny wiek, prawdopodobnie minus znalazł się tam przez przypadek gdyż wartość bezwzględna mieści się w przedziale [20, 40] lat.\n# Zatem obsługa tego przypadku polega na zmianie znaku na dodatni z -34 na 34 lata.\nHOMA_DT[WIEK < 0, WIEK:=-WIEK]\nHOMA_DT[FAT.ALL.P > 100 | FAT.A.P > 100 | FAT.G.P > 100 | FAT.ALL.P < 0 | FAT.A.P < 0 | FAT.G.P < 0]\n# Wszystkie wartości procentowe tłuszczu zawierają się w poprawnym przedziale [0,100].\nlength(HOMA_DT[BMI < 18 | BMI > 25]$BMI)\nsetdiff(HOMA_DT, HOMA_DT[!(BMI < 18 | BMI > 25)])\n# 11 pacjentów ma BMI spoza przedziału [18, 25] a tylko tacy powinni brać udział w badaniu. W związku z tym wiersze te zostały usunięte i nie są brane pod uwagę w toku dalszej analizy.\nHOMA_DT <- HOMA_DT[BMI >= 18 & BMI <= 25]\n\nHOMA_DT[WHR<0]\nHOMA_DT[TROJGLICERYDY < 0]\nHOMA_DT[LDL.HDL < 0]\n# Wartości WHR, stężenia trójglicerydów i stosunku LDL/HDL wszystkie są nieujemne tak jak być musi w rzeczywistości.\n\nsapply(HOMA_DT, class)\n\n\n?complete.cases\nnum_complete_cases <- sum(complete.cases(HOMA_DT))\nnum_rows <- nrow(HOMA_DT)\nnum_incomplete_cases <- num_rows - num_complete_cases\nnum_incomplete_cases\n# Po wcześniejszych operacjach pozostało 265 obserwacji, z czego 259 kompletnych wierszy. Liczba 6 wierszy z brakami stanowi 6/259 = 2.3% całego zbioru danych. Przy takiej ilości możemy po prostu odrzucić wiersze z brakującymi danymi zamiast próbować je uzupełniać. Tak też robimy.\n\ncomplete.cases(HOMA_DT)\nHOMA_DT <- HOMA_DT[complete.cases(HOMA_DT)]\n\n\n# 2.\nsummary(HOMA_DT)\ncolnames(HOMA_DT)\nboxplot(HOMA_DT$WIEK)\nboxplot(HOMA_DT$BMI)\nboxplot(HOMA_DT$WHR)\nboxplot(HOMA_DT$TROJGLICERYDY)\nboxplot(HOMA_DT$HOMA)\nboxplot(HOMA_DT$LDL.HDL)\nboxplot(HOMA_DT$FAT.ALL.P)\nboxplot(HOMA_DT$FAT.A.P)\nboxplot(HOMA_DT$FAT.G.P)\n\n\n# 3.\nset.seed(100)\nTEST_SAMPLE <- sample_n(HOMA_DT, 10)\nis.data.table(HOMA_DT)\nis.data.table(TEST_SAMPLE)\nHOMA_DT <- setdiff(HOMA_DT, TEST_SAMPLE)\n\n\n# 4.\ncolnames(HOMA_DT)\n\nfit <- lm(HOMA ~ WIEK + BMI + WHR + TROJGLICERYDY + LDL.HDL + FAT.ALL.P + FAT.A.P + FAT.G.P, data = HOMA_DT)\nsummary(fit)\n\ncoefficients(fit) # model coefficients\nconfint(fit, level=0.95) # CIs for model parameters\nfitted(fit) # predicted values\nresiduals(fit) # residuals\nanova(fit) # anova table\nvcov(fit) # covariance matrix for model parameters\ninfluence(fit) # regression diagnostics \n\nlayout(matrix(c(1,2,3,4),2,2)) # optional 4 graphs/page\nplot(fit)\n\n\n",
+    "created" : 1553972371003.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1962993696",
+    "id" : "B2DEE8DE",
+    "lastKnownWriteTime" : 1553979746,
+    "last_content_update" : 1553979746186,
+    "path" : "~/Desktop/MATEMATYKA/SEMESTR6/STATYSTYCZNA_ANALIZA_DANYCH/L/sprawozdanie1/lab5/src/Sprawozdanie1.R",
+    "project_path" : "Sprawozdanie1.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

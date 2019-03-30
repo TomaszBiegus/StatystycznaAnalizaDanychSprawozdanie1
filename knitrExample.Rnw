@@ -1,0 +1,108 @@
+\documentclass[12pt,a4paper,notitlepage]{article}
+
+\usepackage{polski}
+\usepackage[cp1250]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+
+
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+
+\makeatletter
+\newcommand{\linia}{\rule{\linewidth}{0.4mm}}
+\renewcommand{\maketitle}{\begin{titlepage}
+    \vspace*{1cm}
+    \begin{center}\small
+    Politechnika Wroc³awska\\
+    Wydzia³ Matematyki\\
+
+    \end{center}
+    \vspace{3cm}
+    \noindent\linia
+    \begin{center}
+      \LARGE \textsc{\@title}
+         \end{center}
+     \linia
+    \vspace{0.5cm}
+    \begin{flushright}
+    \begin{minipage}{5cm}
+    \textit{\small Autor:}\\
+    \normalsize \textsc{\@author} \par
+    \end{minipage}
+    \vspace{5cm} 
+     \end{flushright}
+    \vspace*{\stretch{6}}
+    \begin{center}
+    \@date
+    \end{center}
+  \end{titlepage}%
+}
+\makeatother
+\author{Autor}
+\title{Statystyczna Analiza Danych\\
+    Sprawozdanie I}
+
+<<echo = FALSE>>=
+# global chunk options
+knitr::opts_chunk$set(echo=F)
+@
+
+
+\begin{document}
+
+\maketitle
+\section{Wprowadzenie}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Analiza}
+% Globalne opcje knitr
+
+<<>>=
+library(ggplot2)
+library(kableExtra)
+library(data.table)
+library(magrittr)
+@
+
+% Analiza wewnÄ…trz raportu 
+<<>>=
+dataset <- data.table(x = rnorm(100), 
+                      y = rexp(100),
+                      group = sample(c("a","b"), 100, replace = TRUE))
+@
+
+
+% Wyœwietlenie kodu
+<<echo = TRUE>>=
+dataset %>% summary()
+@
+
+<<eval = FALSE, echo = TRUE>>=
+dataset %>% head()
+
+@
+
+% Wykres
+<<"fig1", echo = TRUE, fig.cap="boxplot", fig.pos="H">>=
+dataset %>% 
+  ggplot(aes(x = group, y = y)) + 
+  geom_boxplot()
+@
+
+To jest referencja do wykresu \ref{fig:fig1}
+
+<<fig2, echo = TRUE, fig.height=3>>=
+dataset %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_point()
+@
+
+% Tabela
+<<tabela>>=
+kable(head(dataset), format = "latex")
+@
+
+\subsection{Wnioski}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\end{document}

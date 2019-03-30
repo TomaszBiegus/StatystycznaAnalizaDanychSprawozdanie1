@@ -1,0 +1,31 @@
+library(magrittr)
+library(data.table)
+
+
+HOMA_DF <- read.csv('../HOMA.csv', sep = ';', dec = ',')
+HOMA_DT <- data.table(HOMA_DF)
+summary(HOMA_DT)
+
+
+# 1. Przegląd danych - "sanity checks":
+HOMA_DT[WIEK < 20 | WIEK > 40]
+
+HOMA_DT[FAT.ALL.P > 100 | FAT.A.P > 100 | FAT.G.P > 100 | FAT.ALL.P < 0 | FAT.A.P < 0 | FAT.G.P < 0]
+
+
+length(HOMA_DT[BMI < 18 | BMI > 25]$BMI)
+
+HOMA_DT[WHR<0]
+
+HOMA_DT[TROJGLICERYDY < 0]
+
+HOMA_DT[LDL.HDL < 0]
+
+sapply(HOMA_DT, class)
+
+
+?complete.cases
+num_complete_cases <- sum(complete.cases(HOMA_DT))
+num_rows <- nrow(HOMA_DT)
+num_incomplete_cases <- num_rows - num_complete_cases
+num_incomplete_cases

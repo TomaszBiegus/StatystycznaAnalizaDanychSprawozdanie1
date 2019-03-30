@@ -1,0 +1,114 @@
+\documentclass{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+
+\author{Tomasz Biegus}
+\title{Sprawozdanie 1 z przedmiotu Statystyczna Analiza Danych}
+\begin{document}
+\maketitle
+
+
+
+\section{Analiza}
+\subsection{Sprawdzenie danych}
+Przed przystąpieniem do analizy należy sprawdzić czy w danych nie występują wartości, które z pewnością są wynikiem błędu. Zwykle pewność można mieć kiedy wartości nie zgadzają się z sensem fizycznym badanej zmiennej, dobrym przykładem jest ujemna wartość wieku. Ponadto w danych mogą występować braki, które należy odpowienio obsłużyć bądź przez usunięcie obserwacji zawierających brakujące wartości, bądź stosując jedną z metod uzupełniania braków.
+
+W badanym zbiorze danych HOMA występuje 10 zmiennych: 
+\begin{itemize}
+\item Płeć, 
+\item WIEK, 
+\item BMI, 
+\item WHR, 
+\item TROJGLICERYDY, 
+\item HOMA, 
+\item LDL.HDL, 
+\item FAT.ALL.P, 
+\item FAT.A.P, 
+\item FAT.G.P.
+\end{itemize}
+
+
+Zgodnie z opisem w treści zadania, w badaniu brało udział 194 kobiety i 84 mężczyzn w wieku od 20 do 40 lat. Sprawdzono, że wszystkie obserwacje znajdują się w tym przedziale z wyjątkiem jednej, dla której wiek wynosił -34 lata. Najprawdopodobniej wartość ta jest skutkiem omyłkowego pojawienia się znaku "minus", zatem obserwacji tej nie usunięto, a jedynie zmieniono wartość wieku na dodatnią.
+
+Sprawdzono, że wszystkie wartości dotyczące poziomu tłuszczu w organizmie (całkowitego, gynoidalnego i androidalnego) zawierają się w sensownym przedziale [0, 100].
+
+Zgodnie z treścią zadania, w badaniu brać powinny jedynie osoby o wskaźniku BMI zawierającym się w przedziale [18, 25]. Znaleziono w zbiorze 11 obserwacji które nie spełniały tego warunku. Usunięto je ze zbioru danych.
+
+Sprawdzono, że wartości WHR, stężenia trójglicerydów i stosunku LDL/HDL wszystkie są nieujemne tak jak to być musi w rzeczywistości.
+
+Po powyższych operacjach pozostało 265 obserwacji, z czego 259 kompletnych (bez braków). Liczba 6 wierszy z brakami stanowi $\frac{6}{259} \approx 2.3\%$ całego zbioru danych. Przy takiej ilości uzasadnione jest po prostu odrzucenie wierszy z brakującymi danymi zamiast podejmowania prób ich uzupełniania. W związku z powyższym usunięto 6 wierszy z brakami ze zbioru danych.
+
+\subsection{Wstępna analiza danych}
+
+\subsection{Wylosowanie danych testowych}
+Ustawiono wartość ziarna i wylosowano 10 obserwacji, które nie uczestniczyły w dopasowywaniu modelu. Z danych wykorzystywanych w dalszym toku prac usunięto te 10 obserwacji otrzymując zbiór danych o liczności 249.
+
+\subsection{Zbudowanie modelu regresji}
+W oparciu o wszystkie numeryczne zmienne objaśniające zbudowano model regresji. Zmienną objaśnianą jest HOMA, zmiennymi objaśniającymi są: 
+\begin{enumerate}
+\item WIEK, 
+\item BMI, 
+\item WHR, 
+\item TROJGLICERYDY, 
+\item LDL.HDL, 
+\item FAT.ALL.P, 
+\item FAT.A.P, 
+\item FAT.G.P.
+\end{enumerate}
+Czyli wszystkie z wyjątkiem płci, która jest zmienną kategoryczną a nie numeryczną.
+
+\subsection{Analiza reszt dla pełnego modelu}
+
+\subsection{Identyfikacja i usunięcie obserwacji odstających i wpływowych}
+
+\subsection{Wybór modelu}
+
+\subsection{Interpretacja współczynników wybranego modelu}
+
+\subsection{ponowna analiza reszt dla wybranego modelu}
+
+
+\section{Wnioski}
+
+\end{document}
+
+
+
+
+
+
+
+%\subsection{Wypunktowania}
+%To jest wypunktowanie:
+%\begin{itemize}
+%\item punkt
+%\item punkt
+%\item punkt
+%\end{itemize}
+%\subsection{Wyliczenie}
+%To jest wyliczenie:
+%\begin{enumerate}
+%\item pierwszy,
+%\item drugi,
+%\item trzeci.
+%\end{enumerate}
+%\subsection{Wykres}
+%Na Rysunku~\ref{fig:wykres} znajduje siê przyk³adowy wykres.
+%\begin{figure}[H]
+%\includegraphics[width=\textwidth]{wykres}
+%\caption{Przyk³adowy wykres}
+%\label{fig:wykres}
+%\end{figure}
+%\subsection{Wzory}
+%\begin{equation}
+%2 + 2 = 4
+%\end{equation}
+%\begin{equation}
+%E = mc^2
+%\end{equation}
+%\begin{equation}
+%\left[- \frac{\hbar^2}{2M} + V(X) \right] \Psi(x)=  \mathcal{E} \Psi(x)
+%\end{equation}
